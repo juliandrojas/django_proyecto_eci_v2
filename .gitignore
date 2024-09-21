@@ -1,0 +1,5 @@
+docs/
+example/
+media/
+.venv/
+db.sqlite3
