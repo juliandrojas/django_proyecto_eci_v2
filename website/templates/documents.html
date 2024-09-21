@@ -72,14 +72,24 @@
       <h1 class="text-center">Documentos</h1>
       <div class="container">
         <div class="row">
-          <h2>Archivos subidos:</h2>
-          <ul>
-            {% for document in documents %}
-                <li>
-                    <a href="{% url 'download_file' document.id %}">{{ document.file_name }}</a>
-                </li>
-            {% endfor %}
-            </ul>
+          <table class="table">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">Nombre</th>
+                <th scope="col">Subido el</th>
+                <th scope="col">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for document in documents %}
+                <tr>
+                  <th>{{ document.file_name }}</th>
+                  <th>{{ document.uploaded_at }}</th>
+                  <th><a href="{% url 'download_file' document.id %}" class="btn btn-primary w-100">Descargar</a></th>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
   </main>  
