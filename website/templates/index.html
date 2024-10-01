@@ -138,47 +138,55 @@
       <section id="team">
         <h1 class="text-center">Equipo</h1>
         <div class="container">
-          {% for user in users %}
-          <div class="row">
-            <div class="col-md-3">
-              <div class="card">
-                <img
-                  class="card-img-top"
-                  src="{{ user.img_profile_path.url }}"
-                  alt="Perfil de {{ user.name }}"
-                />
-                <div class="card-body">
-                  <h3 class="card-title">{{ user.name }}</h3>
-                  <p class="card-text">Email: <strong> {{ user.email }}</strong></p>
-                  <a href="{{ user.linkedin }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">LinkedIn <i class="fa-brands fa-linkedin"></i></a>
-                  <a href="{{ user.orcid }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">ORCID <i class="fa-brands fa-orcid"></i></a>
+          {% if users %}
+            {% for user in users %}
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <img
+                    class="card-img-top"
+                    src="{{ user.img_profile_path.url }}"
+                    alt="Perfil de {{ user.name }}"
+                  />
+                  <div class="card-body">
+                    <h3 class="card-title">{{ user.name }}</h3>
+                    <p class="card-text">Email: <strong> {{ user.email }}</strong></p>
+                    <a href="{{ user.linkedin }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">LinkedIn <i class="fa-brands fa-linkedin"></i></a>
+                    <a href="{{ user.orcid }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">ORCID <i class="fa-brands fa-orcid"></i></a>
+                </div>
               </div>
             </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+          {% else %}
+            <p class="text-center">No hay usuarios registrados</p>
+          {% endif %}
         </div>      
       </section>
       <section id="investigation">
         <h1 class="text-center">Investigaciones</h1>
         <div class="container">
-          <p class="text-center">Estas son algunas de nuestras lineas de investigación</p>
-          <div class="row">
-            {% for category in categories %}
-              <div class="col-md-3">
-                <div class="card">
-                    <img
-                        class="card-img-top"
-                        src="{{ category.img_category.url }}"
-                        alt="{{ category.name }}"
-                    />
-                    <div class="card-body">
-                        <h3 class="card-title">{{ category.name }}</h3>
-                        <a href="{% url 'render_documents' category.id %}" class="btn btn-primary w-100">Ver documentos</a>
-                    </div>
-                </div>
+          {% if categories %}
+            <p class="text-center">Estas son algunas de nuestras lineas de investigación</p>
+            <div class="row">
+              {% for category in categories %}
+                <div class="col-md-3">
+                  <div class="card">
+                      <img
+                          class="card-img-top"
+                          src="{{ category.img_category.url }}"
+                          alt="{{ category.name }}"
+                      />
+                      <div class="card-body">
+                          <h3 class="card-title">{{ category.name }}</h3>
+                          <a href="{% url 'render_documents' category.id %}" class="btn btn-primary w-100">Ver documentos</a>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
-            </div>
+          {% else %}
+            <p class="text-center">No hay líneas de investigación registradas</p>
+          {% endif %}
           </div>
       </div>
       
