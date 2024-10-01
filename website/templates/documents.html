@@ -69,9 +69,10 @@
       </nav>
     </header>
     <main>
-      <h1 class="text-center">Documentos</h1>
       <div class="container">
         <div class="row">
+          {% if documents %}
+          <h1 class="text-center">Documentos</h1>
           <table class="table">
             <thead>
               <tr class="text-center">
@@ -89,7 +90,11 @@
                 </tr>
               {% endfor %}
             </tbody>
-          </table>
+          </table>  
+          {% else %}
+            <h1 class="text-center">No hay documentos</h1>
+          {% endif %}
+          
         </div>
       </div>
   </main>  
